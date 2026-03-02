@@ -7,12 +7,14 @@ interface IAuthState {
   loading: boolean
   isLogin: boolean
   user: IResponseLogin
+  splashscreen: boolean
 }
 
 const initialState: IAuthState = {
   loading: false,
   isLogin: false,
   user: {} as IResponseLogin,
+  splashscreen: true,
 }
 
 export const Auth = createSlice({
@@ -43,8 +45,20 @@ export const Auth = createSlice({
         state.loading = false
         state.isLogin = true
         state.user = action.payload.data
+        state.splashscreen = false
       })
       .addCase(slices.getMe.rejected, (state) => {
+        state.loading = false
+        state.isLogin = false
+        state.user = {} as IResponseLogin
+        state.splashscreen = false
+      })
+      .addCase(slices.logout.fulfilled, (state) => {
+        state.loading = false
+        state.isLogin = false
+        state.user = {} as IResponseLogin
+      })
+      .addCase(slices.logout.rejected, (state) => {
         state.loading = false
         state.isLogin = false
         state.user = {} as IResponseLogin

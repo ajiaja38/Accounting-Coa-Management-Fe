@@ -16,3 +16,13 @@
 .content-padding {
   @apply p-4 lg:px-9 3xl:px-0;
 }
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
