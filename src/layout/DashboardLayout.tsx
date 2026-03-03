@@ -32,7 +32,7 @@ const menuItems: ItemType<MenuItemType>[] = [
     label: "Testing Coa",
     children: [
       {
-        key: "/testing-coa/1",
+        key: "/testing-1",
         label: "Testing Coa 1",
       },
       {
@@ -77,11 +77,13 @@ const DashboardLayout: React.FC = () => {
           trigger={null}
           collapsible
           collapsed={collapsed}
+          collapsedWidth={50}
           style={{
             overflow: "auto",
             height: "100vh",
             position: "sticky",
             top: 0,
+            padding: 0,
           }}
         >
           <div className='demo-logo-vertical' />
@@ -91,6 +93,10 @@ const DashboardLayout: React.FC = () => {
             defaultSelectedKeys={["/home"]}
             items={menuItems}
             onClick={onClick}
+            style={{
+              height: "100%",
+              borderRight: 0,
+            }}
           />
         </Sider>
         <Layout>

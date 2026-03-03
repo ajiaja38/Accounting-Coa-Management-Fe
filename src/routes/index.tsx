@@ -26,6 +26,10 @@ const router: ReturnType<typeof createHashRouter> = createHashRouter([
             path: "/journal",
             element: <Journal />,
           },
+          {
+            path: "/testing-1",
+            element: <div>Testing 1</div>,
+          },
         ],
       },
     ],
