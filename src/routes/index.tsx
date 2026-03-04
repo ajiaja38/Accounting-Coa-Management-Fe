@@ -1,9 +1,11 @@
+import { lazy } from "react"
 import { createHashRouter } from "react-router"
-import LoginPage from "../pages/common/LoginPage"
 import AuthGuard from "./guard/auth.guard"
-import Home from "../pages/private/Home"
-import DashboardLayout from "../layout/DashboardLayout"
 import Journal from "../pages/private/Journal"
+
+const LoginPage = lazy(() => import("../pages/common/LoginPage"))
+const Home = lazy(() => import("../pages/private/Home"))
+const DashboardLayout = lazy(() => import("../layout/DashboardLayout"))
 
 const router: ReturnType<typeof createHashRouter> = createHashRouter([
   {

@@ -1,4 +1,12 @@
-import { App, Button, Form, Input, Typography, type FormProps } from "antd"
+import {
+  App,
+  Button,
+  Form,
+  Input,
+  Spin,
+  Typography,
+  type FormProps,
+} from "antd"
 import type { JSX } from "react"
 import { LockOutlined, UserOutlined } from "@ant-design/icons"
 import { useRedux } from "../../config/hooks/useRedux"
@@ -10,7 +18,7 @@ import { useNavigate } from "react-router"
 const LoginPage = (): JSX.Element => {
   const {
     dispatch,
-    Auth: { loading, user },
+    Auth: { loading },
   } = useRedux(EReducer.AUTH)
 
   const navigate = useNavigate()
@@ -88,7 +96,7 @@ const LoginPage = (): JSX.Element => {
                 size='large'
                 style={{ width: "100%", marginTop: "1rem" }}
               >
-                {loading ? "Loading..." : "Masuk"} {user.userName}
+                {loading ? <Spin style={{ color: "white" }} /> : "Masuk"}
               </Button>
             </Form.Item>
           </Form>

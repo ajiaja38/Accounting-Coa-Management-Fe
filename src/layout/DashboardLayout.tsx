@@ -1,5 +1,6 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import {
+  FundProjectionScreenOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   UploadOutlined,
@@ -45,11 +46,22 @@ const menuItems: ItemType<MenuItemType>[] = [
 
 const DashboardLayout: React.FC = () => {
   const navigate: NavigateFunction = useNavigate()
+  const refHeading = useRef<HTMLHeadingElement>(null)
+  const refLogo = useRef<HTMLSpanElement>(null)
 
   const { dispatch } = useRedux(EReducer.AUTH)
 
   const [collapsed, setCollapsed] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleCollapse = () => {
+    setCollapsed(!collapsed)
+
+    if (refHeading.current && refLogo.current) {
+      refHeading.current.style.display = collapsed ? "block" : "none"
+      refLogo.current.style.fontSize = collapsed ? "24px" : "16px"
+    }
+  }
 
   const showModal = () => setIsModalOpen(true)
 
@@ -79,14 +91,27 @@ const DashboardLayout: React.FC = () => {
           collapsed={collapsed}
           collapsedWidth={50}
           style={{
-            overflow: "auto",
-            height: "100vh",
             position: "sticky",
             top: 0,
             padding: 0,
+            height: "100vh",
+            display: "flex",
+            flexDirection: "column",
+            overflow: "hidden",
           }}
         >
-          <div className='demo-logo-vertical' />
+          <div className='my-3 flex flex-col items-center justify-center gap-y-1'>
+            <FundProjectionScreenOutlined
+              ref={refLogo}
+              style={{
+                color: "white",
+                fontSize: "24px",
+              }}
+            />
+            <h1 className='text-white text-center font-bold' ref={refHeading}>
+              Finance Genius
+            </h1>
+          </div>
           <Menu
             theme='dark'
             mode='inline'
@@ -94,8 +119,9 @@ const DashboardLayout: React.FC = () => {
             items={menuItems}
             onClick={onClick}
             style={{
-              height: "100%",
               borderRight: 0,
+              overflowY: "auto",
+              height: "100vh",
             }}
           />
         </Sider>
@@ -117,7 +143,7 @@ const DashboardLayout: React.FC = () => {
             <Button
               type='text'
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-              onClick={() => setCollapsed(!collapsed)}
+              onClick={handleCollapse}
               style={{
                 fontSize: "16px",
                 width: 64,

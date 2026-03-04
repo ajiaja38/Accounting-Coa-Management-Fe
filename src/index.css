@@ -35,10 +35,6 @@
   border-right: 4px solid #1677ff !important;
 }
 
-.ant-layout-sider .ant-menu {
-  height: 100%;
-}
-
 .ant-menu-item {
   margin: 0 !important;
   border-radius: 0 !important;
@@ -78,4 +74,9 @@
 
 .ant-menu-item::after {
   display: none !important;
+}
+
+.ant-layout-sider .ant-menu {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(0, 52, 124) transparent;
 }
