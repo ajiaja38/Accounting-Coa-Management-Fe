@@ -1,50 +1,19 @@
-import React, { useRef, useState } from "react"
+import React, { useRef, useState, type JSX } from "react"
 import {
   FundProjectionScreenOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
 } from "@ant-design/icons"
 import { Button, Layout, Menu, Modal, theme, type MenuProps } from "antd"
 import { Outlet, useNavigate, type NavigateFunction } from "react-router"
-import type { ItemType, MenuItemType } from "antd/es/menu/interface"
 import { useRedux } from "../config/hooks/useRedux"
 import { EReducer } from "../types/enum/EReducer.enum"
 import { logout } from "../config/redux/auth/slices"
+import menuItems from "./menuItem"
 
 const { Header, Sider, Content } = Layout
 
-const menuItems: ItemType<MenuItemType>[] = [
-  {
-    key: "/home",
-    icon: <UserOutlined />,
-    label: "Home",
-  },
-  {
-    key: "/journal",
-    icon: <VideoCameraOutlined />,
-    label: "Journal",
-  },
-  {
-    key: "/testing-coa",
-    icon: <UploadOutlined />,
-    label: "Testing Coa",
-    children: [
-      {
-        key: "/testing-1",
-        label: "Testing Coa 1",
-      },
-      {
-        key: "/testing-coa/2",
-        label: "Testing Coa 2",
-      },
-    ],
-  },
-]
-
-const DashboardLayout: React.FC = () => {
+const DashboardLayout: React.FC = (): JSX.Element => {
   const navigate: NavigateFunction = useNavigate()
   const refHeading = useRef<HTMLHeadingElement>(null)
   const refLogo = useRef<HTMLSpanElement>(null)
