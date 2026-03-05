@@ -21,7 +21,7 @@ const SplashScreen: React.FC<Props> = ({ children }): JSX.Element => {
 
   if (show || Auth.splashscreen)
     return (
-      <div className='relative w-full h-screen flex items-center justify-center overflow-hidden bg-[#1677ff]'>
+      <div className='relative w-full h-screen flex items-center justify-center overflow-hidden bg-blue-500'>
         <div className='absolute inset-0 bg-linear-to-r from-cyan-500 to-blue-500 animate-pulse opacity-80'></div>
 
         <div className='relative z-10 backdrop-blur-xl bg-white/10 border border-white/20 px-12 py-10 rounded-3xl shadow-2xl text-center transition-all duration-500 animate-bounce'>
