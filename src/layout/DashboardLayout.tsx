@@ -9,7 +9,7 @@ import { Outlet, useNavigate, type NavigateFunction } from "react-router"
 import { useRedux } from "../config/hooks/useRedux"
 import { EReducer } from "../types/enum/EReducer.enum"
 import { logout } from "../config/redux/auth/slices"
-import menuItems from "./menuItem"
+import menuItems from "./MenuItem"
 
 const { Header, Sider, Content } = Layout
 
