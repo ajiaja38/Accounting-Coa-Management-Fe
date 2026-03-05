@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, type JSX } from "react"
 import { useRedux } from "../config/hooks/useRedux"
 import { EReducer } from "../types/enum/EReducer.enum"
 import { getMe } from "../config/redux/auth/slices"
@@ -8,18 +8,18 @@ interface Props {
   children: React.ReactNode
 }
 
-const SplashScreen: React.FC<Props> = ({ children }) => {
+const SplashScreen: React.FC<Props> = ({ children }): JSX.Element => {
   const { Auth, dispatch } = useRedux(EReducer.AUTH)
   const [show, setShow] = useState<boolean>(true)
 
   useEffect(() => {
     dispatch(getMe())
 
-    const timer = setTimeout(() => setShow(false), 1200)
-    return () => clearTimeout(timer)
+    const timer: number = setTimeout(() => setShow(false), 1200)
+    return (): void => clearTimeout(timer)
   }, [dispatch])
 
-  if (show || Auth.splashscreen) {
+  if (show || Auth.splashscreen)
     return (
       <div className='relative w-full h-screen flex items-center justify-center overflow-hidden bg-[#1677ff]'>
         <div className='absolute inset-0 bg-linear-to-r from-cyan-500 to-blue-500 animate-pulse opacity-80'></div>
@@ -37,7 +37,6 @@ const SplashScreen: React.FC<Props> = ({ children }) => {
         </div>
       </div>
     )
-  }
 
   return <>{children}</>
 }
