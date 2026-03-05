@@ -15,15 +15,17 @@ const { Header, Sider, Content } = Layout
 
 const DashboardLayout: React.FC = (): JSX.Element => {
   const navigate: NavigateFunction = useNavigate()
-  const refHeading = useRef<HTMLHeadingElement>(null)
-  const refLogo = useRef<HTMLSpanElement>(null)
+  const refHeading: React.RefObject<HTMLHeadingElement | null> =
+    useRef<HTMLHeadingElement>(null)
+  const refLogo: React.RefObject<HTMLSpanElement | null> =
+    useRef<HTMLSpanElement>(null)
 
   const { dispatch } = useRedux(EReducer.AUTH)
 
-  const [collapsed, setCollapsed] = useState(false)
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [collapsed, setCollapsed] = useState<boolean>(false)
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
-  const handleCollapse = () => {
+  const handleCollapse = (): void => {
     setCollapsed(!collapsed)
 
     if (refHeading.current && refLogo.current) {
@@ -32,20 +34,21 @@ const DashboardLayout: React.FC = (): JSX.Element => {
     }
   }
 
-  const showModal = () => setIsModalOpen(true)
+  const showModal = (): void => setIsModalOpen(true)
 
-  const handleOk = () => {
+  const handleOk = (): void => {
     setIsModalOpen(false)
-    dispatch(logout()).then(() => navigate("/"))
+    dispatch(logout()).then((): void | Promise<void> => navigate("/"))
   }
 
-  const handleCancel = () => setIsModalOpen(false)
+  const handleCancel = (): void => setIsModalOpen(false)
 
   const {
     token: { colorBgContainer },
   } = theme.useToken()
 
-  const onClick: MenuProps["onClick"] = (e) => navigate(e.key)
+  const onClick: MenuProps["onClick"] = (e): void | Promise<void> =>
+    navigate(e.key)
 
   return (
     <>
