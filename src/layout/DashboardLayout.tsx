@@ -34,14 +34,14 @@ const DashboardLayout: React.FC = (): JSX.Element => {
     }
   }
 
-  const showModal = (): void => setIsModalOpen(true)
+  const showModal: () => void = (): void => setIsModalOpen(true)
 
-  const handleOk = (): void => {
+  const handleOk: () => void = (): void => {
     setIsModalOpen(false)
     dispatch(logout()).then((): void | Promise<void> => navigate("/"))
   }
 
-  const handleCancel = (): void => setIsModalOpen(false)
+  const handleCancel: () => void = (): void => setIsModalOpen(false)
 
   const {
     token: { colorBgContainer },
